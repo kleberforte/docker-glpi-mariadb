@@ -1,6 +1,6 @@
 # Docker - GLPI + MariaDB
 
-Esta implantação leva em consideração que você já possui uma instância do banco de dados **MySQL**/**MariaDB** e o **GLPI** sob o **Apache** em um servidor **GNU/Linux** em produção e deseja migrar para o ambiente Docker.
+Esta implantação leva em consideração que você já possui uma instância do banco de dados `MySQL/MariaDB` e o `GLPI` sob o `Apache` em um servidor **GNU/Linux** em produção e deseja migrar para o ambiente Docker.
 
 ## Passo 1 - Backup do banco de dados e GLPI
 
@@ -10,7 +10,7 @@ Esta implantação leva em consideração que você já possui uma instância do
    mysqldump -u root -p glpidbatual > backup.sql
    ```
 
-2. Ainda no servidor, faça a cópia do diretório raiz do GLPI. Geralmente localizado em **/var/www/html/glpi**
+2. Ainda no servidor, faça a cópia do diretório raiz do GLPI. Geralmente localizado em `/var/www/html/glpi`
 
 ## Passo 2 - Importação dos dados
 
@@ -21,11 +21,11 @@ Esta implantação leva em consideração que você já possui uma instância do
    cd docker-glpi-mariadb
    ```
 
-2. Copie o backup do banco de dados para o diretório (vazio) **db**
+2. Copie o backup do banco de dados para o diretório (vazio) `db`
 
-3. Copie os arquivos do GLPI para o diretório (vazio) **www**
+3. Copie os arquivos do GLPI para o diretório (vazio) `www`
 
-4. Agora, vamos criar um container temporário para importar o nosso banco e ao mesmo tempo, persistir os dados do banco no diretório **db**
+4. Agora, vamos criar um container temporário para importar o nosso banco e ao mesmo tempo, persistir os dados do banco no diretório `db`
 
    ```bash
    # Altere a variável de ambiente MARIADB_ROOT_PASSWORD conforme as suas necessidades
@@ -47,7 +47,7 @@ Esta implantação leva em consideração que você já possui uma instância do
 
 ## Passo 3 - Variáveis
 
-Edite o arquivo **mariadb.env** com as credenciais de acesso ao banco criadas no passo 2:
+Edite o arquivo `mariadb.env` com as credenciais de acesso ao banco criadas no passo 2:
 
 ```bash
 MARIADB_ROOT_PASSWORD=senhadobanco
@@ -58,7 +58,7 @@ MARIADB_PASSWORD=minhasenha
 
 ## Passo 4 - Docker Compose
 
-Agora basta executar a implantação presente no arquivo **docker-compose.yml**:
+Agora basta executar a implantação presente no arquivo `docker-compose.yml`:
 
 ```bash
 docker-compose up -d
