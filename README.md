@@ -70,6 +70,41 @@ Agora basta executar a implantação presente no arquivo `docker-compose.yml`:
 docker-compose up -d
 ```
 
+#### Conteúdo do arquivo `docker-compose.yml`
+
+```yml
+version: "3.2"
+
+services:
+#MariaDB Container
+  mariadb:
+    image: mariadb:10.8
+    container_name: mariadb
+    hostname: mariadb
+    volumes:
+      - ./db:/var/lib/mysql
+    env_file:
+      - ./mariadb.env
+    restart: unless-stopped
+
+#GLPI Container
+  glpi:
+    image: diouxx/glpi
+    container_name: glpi
+    hostname: glpi
+    ports:
+      - "80:80"
+    volumes:
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./www:/var/www/html/glpi
+    environment:
+      - TIMEZONE=America/Belem
+    depends_on:
+      - mariadb
+    restart: unless-stopped
+```
+
 Observações sobre o arquivo:
 
-- Modifique a variável TIMEZONE que acordo com a sua região
+- Modifique a variável `TIMEZONE` que acordo com a sua região
