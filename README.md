@@ -30,8 +30,12 @@ Esta implantação leva em consideração que você já possui uma instância do
    ```bash
    # Altere a variável de ambiente MARIADB_ROOT_PASSWORD conforme as suas necessidades
    docker container run -dit --name banco_dados -v $(pwd)/db:/var/lib/mysql -e MARIADB_ROOT_PASSWORD=senhadobanco mariadb:10.8
+   ```
+   ```bash
    # Entrando no container
    docker container exec -it banco_dados /bin/bash
+   ```
+   ```bash
    # Criando o banco de dados
    mysql -u root -p
    CREATE DATABASE glpidb;
@@ -39,6 +43,8 @@ Esta implantação leva em consideração que você já possui uma instância do
    GRANT ALL PRIVILEGES ON glpidb.* TO 'glpi'@'%' IDENTIFIED BY 'minhasenha'
    # Importando o banco (a senha é senhadobanco)
    mysql -u root -p glpidb < /var/lib/mysql/backup.sql
+   ```
+   ```bash
    # Saindo do container
    [ctrl] + [P] + [Q]
    # Removendo o container temporário
