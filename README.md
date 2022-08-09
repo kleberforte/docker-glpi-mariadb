@@ -40,9 +40,9 @@ Esta implantação leva em consideração que você já possui uma instância do
    mysql -u root -p
    CREATE DATABASE glpidb;
    CREATE USER 'glpi'@'%' IDENTIFIED BY 'minhasenha';
-   GRANT ALL PRIVILEGES ON glpidb.* TO 'glpi'@'%' IDENTIFIED BY 'minhasenha'
+   GRANT ALL PRIVILEGES ON glpidb.* TO 'glpi'@'%' IDENTIFIED BY 'minhasenha';
    # Importando o banco (a senha é senhadobanco)
-   mysql -u root -p glpidb < /var/lib/mysql/backup.sql
+   mysql -u root -p glpidb < /var/lib/mysql/backup.sql;
    ```
    ```bash
    # Saindo do container
